@@ -8,7 +8,7 @@ public enum PizzaEnum {
 
     // Field (variable) to store the description text
     private String description;
-    private int price;
+    private double price;
 
     // Constructor (runs once for each constant above)
     private PizzaEnum(String description, int price) {
@@ -21,7 +21,7 @@ public enum PizzaEnum {
         return description;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 }
