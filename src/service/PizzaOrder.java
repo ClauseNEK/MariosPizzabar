@@ -5,9 +5,9 @@ import model.*;
 import java.util.ArrayList;
 
 public class PizzaOrder {
-       public PizzaOrderClass createOrder(int customerType, int customerId, String name,
-                                          String phoneNumber, ArrayList<PizzaEnum> pizzas,
-                                          LocalTime pickupTime){
+       public static PizzaOrderClass createOrder(int customerType, int customerId, String name,
+                                                 String phoneNumber, ArrayList<PizzaEnum> pizzas,
+                                                 LocalTime pickupTime){
            Customer customer;
 
            if (customerType == 1) {
@@ -20,7 +20,11 @@ public class PizzaOrder {
 
            return new PizzaOrderClass(customerId, customer, pickupTime, pizzas);
        }
-       }
+
+    public static PizzaOrderClass createOrder() {
+           return createOrder();
+    }
+}
 
 
 

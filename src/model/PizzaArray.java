@@ -40,5 +40,4 @@ public class PizzaArray {
             System.out.println(pizza + " ");
         }
     }
-
 }

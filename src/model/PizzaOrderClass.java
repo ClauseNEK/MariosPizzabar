@@ -31,6 +31,9 @@ public class PizzaOrderClass {
         return pickupTime;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "OrderID: " + orderId + " " + "Kunde: " + customer.getName() + " " + "Telefon: " + customer.getPhoneNumber()
+            + " " + "Afhentning: " + pickupTime;   // Pizza's udskrives for sig
+    }
 }
