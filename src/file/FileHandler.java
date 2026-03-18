@@ -1,4 +1,4 @@
-/*package file;
+package file;
 
 import model.*;
 import model.PizzaOrderClass;
@@ -9,16 +9,16 @@ import java.util.ArrayList;
 
 public class FileHandler {
 
-    public static void savePizzaOrder(String filename, ArrayList<Pizza> pizzalist){
+    public static void savePizzaOrder(String filename, ArrayList<PizzaOrderClass> pizzalist){
         //try (maybe with resources)?
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(filename));
 
-            for (Pizza pizza : pizzalist) {
+            for (PizzaOrderClass pizza : pizzalist) {
                 writer.println((pizza.getPizzas()) + ","
-                        + pizza.getCustomer + ","
-                        + pizza.getorderId() + ","
-                        + get.pickupTime());
+                        + pizza.getCustomer() + ","
+                        + pizza.getOrderId() + ","
+                        + pizza.getPickupTime());
 
                 writer.close();
             }
