@@ -35,6 +35,7 @@ public class PizzaArray {
         pizzalist.add(12, pizza13);
         pizzalist.add(13, pizza14);
 
+        //print all pizza's
         for (Pizza pizza : pizzalist) {
             System.out.println(pizza + " ");
         }
