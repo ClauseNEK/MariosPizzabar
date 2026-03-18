@@ -17,4 +17,16 @@ public class Pizza {
     public String toString() {
         return id + ". " + name + " description: " + description + "Pris: " + price + "kr";
     }
+
+    public String getName(){
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getorderId() {
+        return id;
+    }
 }
