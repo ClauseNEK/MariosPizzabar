@@ -1,37 +1,26 @@
 package service;
 import java.time.LocalTime;
-import model.Customer;
+import model.*;
+
 import java.util.ArrayList;
-import model.PizzaEnum;
+
 public class PizzaOrder {
-    private int orderId;
-    private Customer customer;
-    private LocalTime pickupTime;
-    private ArrayList<PizzaEnum> pizzas;
+       public PizzaOrderClass createOrder(int customerType, int customerId, String name,
+                                          String phoneNumber, ArrayList<PizzaEnum> pizzas,
+                                          LocalTime pickupTime){
+           Customer customer;
 
-    public PizzaOrder(int orderId, Customer customer, LocalTime pickupTime,  ArrayList<PizzaEnum> pizzas){
-        this.orderId = orderId;
-        this.customer = customer;
-        this.pizzas = pizzas;
-        this.pickupTime = pickupTime;
+           if (customerType == 1) {
+               customer = new NormalCustomer(customerId, name, phoneNumber);
+           } else if (customerType == 2) {
+               customer = new VipCustomer(customerId, name, phoneNumber);
+           } else {
+               customer = new EmployeeCustomer(customerId, name, phoneNumber);
+           }
 
-    }
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public ArrayList<PizzaEnum> getPizzas() {
-        return pizzas;
-    }
-
-    public LocalTime getPickupTime() {
-        return pickupTime;
-    }
+           return new PizzaOrderClass(customerId, customer, pickupTime, pizzas);
+       }
+       }
 
 
 
-}
