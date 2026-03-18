@@ -1,6 +1,5 @@
 package service;
 import java.time.LocalTime;
-
 import model.*;
 
 import java.util.ArrayList;
@@ -19,9 +18,9 @@ public class PizzaOrder {
                customer = new EmployeeCustomer(customerId, name, phoneNumber);
            }
 
-           return new PizzaOrder(customerId, customer, pizzas, pickupTime);
+           return new PizzaOrderClass(customerId, customer, pickupTime, pizzas);
        }
        }
-   }
+
 
 
