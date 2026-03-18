@@ -2,8 +2,8 @@ package model;
 
 public class VipCustomer extends Customer {
 
-    public VipCustomer(String name, String phoneNumber) {
-        super(name, phoneNumber);
+    public VipCustomer(int customerID, String name, String phoneNumber) {
+        super(customerID, name, phoneNumber);
     }
 
     @Override

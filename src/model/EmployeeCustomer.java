@@ -2,8 +2,8 @@ package model;
 
 public class EmployeeCustomer extends Customer {
 
-    public EmployeeCustomer(String name, String phoneNumber) {
-        super(name, phoneNumber);
+    public EmployeeCustomer(int customerID, String name, String phoneNumber) {
+        super(customerID, name, phoneNumber);
     }
 
     @Override

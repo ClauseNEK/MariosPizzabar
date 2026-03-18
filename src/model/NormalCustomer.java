@@ -2,8 +2,8 @@ package model;
 
 public class NormalCustomer extends Customer {
 
-    public NormalCustomer(String name, String phoneNumber) {
-        super(name, phoneNumber);
+    public NormalCustomer(int customerID, String name, String phoneNumber) {
+        super(customerID, name, phoneNumber);
     }
 
     @Override
