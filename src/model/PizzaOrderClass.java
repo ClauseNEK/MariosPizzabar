@@ -1,15 +1,14 @@
-package service;
+package model;
 import java.time.LocalTime;
-import model.Customer;
 import java.util.ArrayList;
-import model.PizzaEnum;
-public class PizzaOrder {
+
+public class PizzaOrderClass {
     private int orderId;
     private Customer customer;
     private LocalTime pickupTime;
     private ArrayList<PizzaEnum> pizzas;
 
-    public PizzaOrder(int orderId, Customer customer, LocalTime pickupTime,  ArrayList<PizzaEnum> pizzas){
+    public PizzaOrderClass(int orderId, Customer customer, LocalTime pickupTime, ArrayList<PizzaEnum> pizzas){
         this.orderId = orderId;
         this.customer = customer;
         this.pizzas = pizzas;
