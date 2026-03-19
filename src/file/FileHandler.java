@@ -24,34 +24,41 @@ public class FileHandler {
             }
         }
         catch(IOException e){
-
-            ExceptionHandler.handle(
-                    new ExceptionHandler.FileWriteException(
-                            "Could not write file: " + filename
-                    )
-            );
+//      Setup custom exception handler
+//            ExceptionHandler.handle(
+//                    new ExceptionHandler.FileWriteException(
+//                            "Could not write file: " + filename
+//                    )
+//            );
             }
         }
     }
 
-    public static void readPizzaCsv(ArrayList<Pizza> pizzaarray){
+    public ArrayList<PizzaOrderClass> readPizzaCsv(){
         String filePath = "src/file/pizzaorders.csv";
         String line;
-    //try
+        ArrayList<PizzaOrderClass> allsales = new ArrayList<>();
+    //try with resources
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             while ((line = reader.readLine()) != null) {
                 String[] olddata = line.split(",");
 
-                ArrayList<PizzaOrderClass> allsales = new ArrayList<>();
-                int orderId = Integer.parseInt(olddata[0]); //int?
-                Customer Customer = Customer.toString(olddata[1]);
+
+                int orderId = Integer.parseInt(olddata[0]); //int
+                Customer Customer = Customer.toString(olddata[1]); //customer??
                 LocalTime pickupTime = LocalTime.parse(olddata[2]);
-                pizzaarray pizza = PizzaEnum.valueOf(olddata[3]); //double?
+                ArrayList<PizzaEnum> pizza = PizzaEnum.valueOf(olddata[3]); //Array?
                 //Genre.valueOf(parts[1]);
                 allsales.add(new PizzaOrderClass(orderId,Customer,pickupTime,pizza));
             }
+        } catch (IOException e) {
+            //      Setup custom exception handler
+            e.printStackTrace();
         }
-
-
+        return allsales;
 }
-*/
+
+
+
+
+
