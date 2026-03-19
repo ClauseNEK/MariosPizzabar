@@ -34,28 +34,54 @@ public class FileHandler {
         }
     }
 
-    public ArrayList<PizzaOrderClass> readPizzaCsv(){
-        String filePath = "src/file/pizzaorders.csv";
+public ArrayList<PizzaOrderClass> readPizzaCsv() {
+    String filePath = "src/file/pizzaorders.csv";
+    ArrayList<PizzaOrderClass> allsales = new ArrayList<>();
+
+    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
         String line;
-        ArrayList<PizzaOrderClass> allsales = new ArrayList<>();
-    //try with resources
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            while ((line = reader.readLine()) != null) {
-                String[] olddata = line.split(",");
+        while ((line = reader.readLine()) != null) {
+            String[] olddata = line.split(",");
 
+            // 1. Ordre ID
+            int orderId = Integer.parseInt(olddata[0].trim());
 
-                int orderId = Integer.parseInt(olddata[0]); //int
-                Customer Customer = Customer.toString(olddata[1]); //customer??
-                LocalTime pickupTime = LocalTime.parse(olddata[2]);
-                ArrayList<PizzaEnum> pizza = PizzaEnum.valueOf(olddata[3]); //Array?
-                //Genre.valueOf(parts[1]);
-                allsales.add(new PizzaOrderClass(orderId,Customer,pickupTime,pizza));
+            // 2. Kunde (TYPE;ID;NAVN;TELEFON)
+            String[] cParts = olddata[1].split(";");
+            String type = cParts[0].trim();
+            int cID = Integer.parseInt(cParts[1].trim());
+            String cName = cParts[2].trim();
+            String cPhone = cParts[3].trim();
+
+            Customer customer = switch (type) {
+                case "VIP" -> new VipCustomer(cID, cName, cPhone);
+                case "Employee" -> new EmployeeCustomer(cID, cName, cPhone);
+                default -> new NormalCustomer(cID, cName, cPhone);
+            };
+
+            // 3. Tid
+            LocalTime pickupTime = LocalTime.parse(olddata[2].trim());
+
+            // 4. Pizza-liste (ID:NAVN:BESKRIVELSE:PRIS)
+            ArrayList<Pizza> pizzaList = new ArrayList<>();
+            String[] allPizzas = olddata[3].split(";");
+            for (String pInfo : allPizzas) {
+                String[] p = pInfo.split(":");
+                pizzaList.add(new Pizza(
+                        Integer.parseInt(p[0].trim()), // ID
+                        p[1].trim(),                   // Navn
+                        p[2].trim(),                   // Beskrivelse
+                        Double.parseDouble(p[3].trim()) // Pris
+                ));
             }
-        } catch (IOException e) {
-            //      Setup custom exception handler
-            e.printStackTrace();
+
+            // 5. Gem ordren
+            allsales.add(new PizzaOrderClass(orderId, customer, pickupTime, pizzaList));
         }
-        return allsales;
+    } catch (Exception e) {
+        System.err.println("Fejl ved indlæsning af pizza-data: " + e.getMessage());
+    }
+    return allsales;
 }
 
 
