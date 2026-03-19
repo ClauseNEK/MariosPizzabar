@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class PizzaOrder {
        public static PizzaOrderClass createOrder(int customerType, int customerId, String name,
-                                                 String phoneNumber, ArrayList<PizzaEnum> pizzas,
+                                                 String phoneNumber, ArrayList<Pizza> pizzas,
                                                  LocalTime pickupTime){
            // polymorfi fordi den refererer til Customer
            Customer customer;

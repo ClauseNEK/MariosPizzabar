@@ -6,9 +6,9 @@ public class PizzaOrderClass {
     private int orderId;
     private Customer customer;
     private LocalTime pickupTime;
-    private ArrayList<PizzaEnum> pizzas;
+    private ArrayList<Pizza> pizzas;
 
-    public PizzaOrderClass(int orderId, Customer customer, LocalTime pickupTime, ArrayList<PizzaEnum> pizzas){
+    public PizzaOrderClass(int orderId, Customer customer, LocalTime pickupTime, ArrayList<Pizza> pizzas){
         this.orderId = orderId;
         this.customer = customer;
         this.pizzas = pizzas;
@@ -23,7 +23,7 @@ public class PizzaOrderClass {
         return customer;
     }
 
-    public ArrayList<PizzaEnum> getPizzas() {
+    public ArrayList<Pizza> getPizzas() {
         return pizzas;
     }
 
