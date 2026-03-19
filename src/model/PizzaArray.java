@@ -1,5 +1,7 @@
 package model;
 
+import file.FileHandler;
+
 import java.util.ArrayList;
 //backup in case of ENUM SCREWUP
 public class PizzaArray {

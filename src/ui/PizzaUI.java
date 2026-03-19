@@ -1,7 +1,7 @@
 package ui;
 
+import model.Pizza;
 import model.PizzaArray;
-import model.PizzaEnum;
 import model.PizzaOrderClass;
 import service.PizzaOrder;
 import util.ExceptionHandler;
@@ -44,10 +44,8 @@ public class PizzaUI {
 
 
                 case 2: // Erstattes med vores FileHandler og CSV fil
-                    ArrayList<PizzaEnum> pizzas = new ArrayList<>();
-                    pizzas.add(PizzaEnum.Mafia);
-                    pizzas.add(PizzaEnum.Hawaii);
-
+                    ArrayList<Pizza> pizzas = new ArrayList<>();
+                    // Midlertidlig - INDTIL CSV
                     PizzaOrderClass orderClass = PizzaOrder.createOrder(
                             1,
                             100,

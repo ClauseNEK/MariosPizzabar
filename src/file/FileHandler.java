@@ -1,7 +1,8 @@
-package file;
+/* package file;
+
+import model.Pizza;
 
 import model.*;
-import util.ExceptionHandler;
 
 import java.io.*;
 import java.time.LocalTime;
@@ -9,82 +10,116 @@ import java.util.ArrayList;
 
 public class FileHandler {
 
-    public static void savePizzaOrder(String filename, ArrayList<PizzaOrderClass> pizzalist) {
-        //try (maybe with resources)?
+
+
+    public static void savePizzaOrder(ArrayList<PizzaOrderClass> orders) {
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(filename));
 
-            for (PizzaOrderClass pizza : pizzalist) {
-                writer.println((pizza.getPizzas()) + ","
-                        + pizza.getCustomer() + ","
-                        + pizza.getOrderId() + ","
-                        + pizza.getPickupTime());
+            for (PizzaOrderClass order : orders) {
 
-                writer.close();
+                Customer c = order.getCustomer();
+
+                String customerType = "Normal";
+                if (c instanceof VipCustomer) {
+                    customerType = "VIP";
+                } else if (c instanceof EmployeeCustomer) {
+                    customerType = "Employee";
+                }
+
+                String customerData = customerType + ";" +
+                        c.getCustomerID() + ";" +
+                        c.getName() + ";" +
+                        c.getPhoneNumber();
+
+                String pizzaData = "";
+                for (Pizza p : order.getPizzas()) {
+                    pizzaData += p.getId() + ":" +
+                            p.getName() + ":" +
+                            p.getDescription() + ":" +
+                            p.getPrice() + ";";
+                }
+
+                writer.println(
+                        order.getOrderId() + "|" +
+                                customerData + "|" +
+                                order.getPickupTime() + "|" +
+                                pizzaData
+                );
             }
-        } catch (IOException e) {
-//      Setup custom exception handler
-//            ExceptionHandler.handle(
-//                    new ExceptionHandler.FileWriteException(
-//                            "Could not write file: " + filename
-//                    )
-//            );
 
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("Fejl ved skrivning til fil");
         }
     }
 
-    public ArrayList<PizzaOrderClass> readPizzaCsv() {
-        String filePath = "src/file/pizzaorders.csv";
-        ArrayList<PizzaOrderClass> allsales = new ArrayList<>();
+    public static ArrayList<PizzaOrderClass> readPizzaCsv(String filename) {
+        ArrayList<PizzaOrderClass> orders = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
             String line;
+
             while ((line = reader.readLine()) != null) {
-                String[] olddata = line.split(",");
+                String[] data = line.split("\\|");
 
-                // 1. Ordre ID
-                int orderId = Integer.parseInt(olddata[0].trim());
+                int orderId = Integer.parseInt(data[0]);
 
-                // 2. Kunde (TYPE;ID;NAVN;TELEFON)
-                String[] cParts = olddata[1].split(";");
-                String type = cParts[0].trim();
-                int cID = Integer.parseInt(cParts[1].trim());
-                String cName = cParts[2].trim();
-                String cPhone = cParts[3].trim();
+                Customer customer = getCustomer(data);
 
-                Customer customer = switch (type) {
-                    case "VIP" -> new VipCustomer(cID, cName, cPhone);
-                    case "Employee" -> new EmployeeCustomer(cID, cName, cPhone);
-                    default -> new NormalCustomer(cID, cName, cPhone);
-                };
+                LocalTime pickupTime = LocalTime.parse(data[2]);
 
-                // 3. Tid
-                LocalTime pickupTime = LocalTime.parse(olddata[2].trim());
+                ArrayList<Pizza> pizzas = new ArrayList<>();
+                String[] pizzaParts = data[3].split(";");
 
-                // 4. Pizza-liste (ID:NAVN:BESKRIVELSE:PRIS)
-                ArrayList<Pizza> pizzaList = new ArrayList<>();
-                String[] allPizzas = olddata[3].split(";");
-                for (String pInfo : allPizzas) {
-                    String[] p = pInfo.split(":");
-                    pizzaList.add(new Pizza(
-                            Integer.parseInt(p[0].trim()), // ID
-                            p[1].trim(),                   // Navn
-                            p[2].trim(),                   // Beskrivelse
-                            Double.parseDouble(p[3].trim()) // Pris
-                    ));
+                for (String pizzaInfo : pizzaParts) {
+                    if (!pizzaInfo.isEmpty()) {
+                        String[] p = pizzaInfo.split(":");
+
+                        Pizza pizza = new Pizza(
+                                Integer.parseInt(p[0]),
+                                p[1],
+                                p[2],
+                                Double.parseDouble(p[3])
+                        );
+
+                        pizzas.add(pizza);
+                    }
                 }
 
-                // 5. Gem ordren
-                allsales.add(new PizzaOrderClass(orderId, customer, pickupTime, pizzaList));
+                PizzaOrderClass order = new PizzaOrderClass(orderId, customer, pickupTime, pizzas);
+                orders.add(order);
             }
-        } catch (Exception e) {
-            System.err.println("Fejl ved indlæsning af pizza-data: " + e.getMessage());
+
+            reader.close();
+
+        } catch (IOException e) {
+            System.out.println("Fejl ved læsning af fil");
         }
-        return allsales;
+
+        return orders;
+    }
+
+    private static Customer getCustomer(String[] data) {
+        String[] customerParts = data[1].split(";");
+        String type = customerParts[0];
+        int customerId = Integer.parseInt(customerParts[1]);
+        String name = customerParts[2];
+        String phone = customerParts[3];
+
+        Customer customer;
+        if (type.equals("VIP")) {
+            customer = new VipCustomer(customerId, name, phone);
+        } else if (type.equals("Employee")) {
+            customer = new EmployeeCustomer(customerId, name, phone);
+        } else {
+            customer = new NormalCustomer(customerId, name, phone);
+        }
+        return customer;
     }
 }
 
 
-
-
-
+ */
