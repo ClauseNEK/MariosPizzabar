@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class FileHandler {
 
-    static String filename = "src/file/sales.txt";
+    final static String filename = "src/file/sales.txt";
 
     public static void savePizzaOrder(ArrayList<PizzaOrderClass> orders) {
         try {
