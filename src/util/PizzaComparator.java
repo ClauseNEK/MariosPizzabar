@@ -18,6 +18,11 @@ public class PizzaComparator implements Comparator<Pizza> {
         }
     }
 
-    class Comparator
+    class PizzaIdComparator implements Comparator<Pizza> {
+        @Override
+        public int compare(Pizza p1, Pizza p2){
+            return Integer.compare(p1.getId(), p2.getId());
+        }
+    }
 
 }
