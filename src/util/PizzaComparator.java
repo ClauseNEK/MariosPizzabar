@@ -1,4 +1,23 @@
 package util;
 
-public class PizzaComparator {
+import model.Pizza;
+
+import java.util.Comparator;
+
+public class PizzaComparator implements Comparator<Pizza> {
+
+    @Override
+    public int compare(Pizza p1, Pizza p2){
+        return p1.getName().compareToIgnoreCase(p2.getName());
+    }
+
+    class PriceComparator implements Comparator<Pizza>{
+        @Override
+        public int compare(Pizza p1, Pizza p2) {
+            return Double.compare(p1.getPrice(), p2.getPrice());
+        }
+    }
+
+    class Comparator
+
 }

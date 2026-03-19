@@ -26,7 +26,7 @@ public class Pizza {
         return price;
     }
 
-    public int getorderId() {
+    public int getId() {
         return id;
     }
 }
