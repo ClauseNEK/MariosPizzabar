@@ -1,4 +1,4 @@
-/* package file;
+package file;
 
 import model.Pizza;
 
@@ -10,11 +10,11 @@ import java.util.ArrayList;
 
 public class FileHandler {
 
-
+    static String filename = "src/file/sales.txt";
 
     public static void savePizzaOrder(ArrayList<PizzaOrderClass> orders) {
         try {
-            PrintWriter writer = new PrintWriter(new FileWriter(filename));
+            PrintWriter writer = new PrintWriter(new FileWriter(filename, true));
 
             for (PizzaOrderClass order : orders) {
 
@@ -55,7 +55,7 @@ public class FileHandler {
         }
     }
 
-    public static ArrayList<PizzaOrderClass> readPizzaCsv(String filename) {
+    public static ArrayList<PizzaOrderClass> readPizzaCsv() {
         ArrayList<PizzaOrderClass> orders = new ArrayList<>();
 
         try {
@@ -122,4 +122,3 @@ public class FileHandler {
 }
 
 
- */
