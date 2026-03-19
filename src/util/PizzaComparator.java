@@ -10,7 +10,7 @@ public class PizzaComparator implements Comparator<Pizza> {
     public int compare(Pizza p1, Pizza p2){
         return p1.getName().compareToIgnoreCase(p2.getName());
     }
-
+}
     class PriceComparator implements Comparator<Pizza>{
         @Override
         public int compare(Pizza p1, Pizza p2) {
@@ -25,4 +25,10 @@ public class PizzaComparator implements Comparator<Pizza> {
         }
     }
 
-}
+    class DescriptionComparator implements Comparator<Pizza> {
+        @Override
+        public int compare(Pizza p1, Pizza p2) {
+            return p1.getDescription().compareToIgnoreCase(p2.getDescription());
+        }
+    }
+
