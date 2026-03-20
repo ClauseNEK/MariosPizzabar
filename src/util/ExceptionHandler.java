@@ -1,25 +1,35 @@
 package util;
 
-import java.util.Scanner;
+import java.io.IOException;
+import java.util.InputMismatchException;
+
 
 public class ExceptionHandler {
 
-    public static int getIntInput(Scanner scanner, String message) {
-        while(true) {
-            try {
-                System.out.println(message);
-                int input = scanner.nextInt();
-                return  input;
+    public static void handleInputMismatch(InputMismatchException e) {
 
-            } catch (Exception e) {
-                System.out.println("\u001B[31mFejl: Indtast et tal: 1-5\u001B[0m");
-                scanner.nextLine();
-            }
-        }
+        System.out.println("Fejl: Kun tal 1-4.");
+
     }
 
-    public static String getStringInput(Scanner scanner, String message) {
-        System.out.println(message);
-        return scanner.nextLine();
+    public static void handleFileError(IOException e) {
+
+        System.out.println("Fil fejl opstod.");
+        e.printStackTrace();
+
+    }
+
+    public static void handleNullError(NullPointerException e) {
+
+        System.out.println("Fejl: Null værdi fundet.");
+        e.printStackTrace();
+
+    }
+
+    public static void handleUnexpectedError(Exception e) {
+
+        System.out.println("Uforudset fejl.");
+        e.printStackTrace();
+
     }
 }
