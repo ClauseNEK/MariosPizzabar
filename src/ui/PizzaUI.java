@@ -102,17 +102,21 @@ public class PizzaUI {
 
             System.out.println("Vælg et nr: 1-14 ellers tryk 0 for afslutte");
             int PizzaChoice = scanner.nextInt();
-            //scanner.nextLine();
-            pizzas.add(PizzaChoice);
-
 
             if (PizzaChoice == 0) {
                 choosingPizza = false;
-                for (Integer pizza : pizzas) {
-                    System.out.println(pizza);
+
+                    System.out.println("Aktiv Pizzaordrer:");
+                    System.out.println(pizzas);
                     break;
-                }
+
             }
+            else {
+                //scanner.nextLine();
+                pizzas.add(PizzaChoice);
+            }
+
+
         }
     }
 }
