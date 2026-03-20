@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class PizzaUI {
     static Scanner scanner = new Scanner(System.in);
+
     public static void start() {
 
 
@@ -26,21 +27,21 @@ public class PizzaUI {
                     showpizzas();
                     break;
 
-                    // CASE 2 | CSV - FileHandler
+                // CASE 2 | CSV - FileHandler
 
                 case 2: // Erstattes med vores FileHandler og CSV fil
+                    PizzaOrderNew();
                     break;
 
 
-
-                    // CASE 3 | Viser aktive ordrer | Giver Mario en idé om hvor mange pizzaer han skal lave
+                // CASE 3 | Viser aktive ordrer | Giver Mario en idé om hvor mange pizzaer han skal lave
 
                 case 3:
                     System.out.println("Viser aktive ordrer...");
                     break;
 
 
-                    // CASE 4 | Simpel afslutning dog mangler en "Save" til vores CSV.
+                // CASE 4 | Simpel afslutning dog mangler en "Save" til vores CSV.
 
                 case 4:
                     System.out.println("Systemet afsluttes");
@@ -52,7 +53,7 @@ public class PizzaUI {
         }
     }
 
-    public static void showmenu(){
+    public static void showmenu() {
         System.out.println("==== \uD83C\uDF55 Mario's PizzaBar \uD83C\uDF55 ====");
         System.out.println("1. Vis menukortet");
         System.out.println("2. Opret en ordre");
@@ -72,7 +73,6 @@ public class PizzaUI {
 
     public static void PizzaOrderNew() {
         Scanner scanner = new Scanner(System.in);
-
 
 
         System.out.println("Oprettelse af ny ordre...");
@@ -102,17 +102,21 @@ public class PizzaUI {
 
             System.out.println("Vælg et nr: 1-14 ellers tryk 0 for afslutte");
             int PizzaChoice = scanner.nextInt();
-            scanner.nextLine();
+            //scanner.nextLine();
             pizzas.add(PizzaChoice);
 
-            break;
 
-            if(PizzaChoice == 0) {
+            if (PizzaChoice == 0) {
                 choosingPizza = false;
                 for (Integer pizza : pizzas) {
                     System.out.println(pizza);
                     break;
                 }
+            }
+        }
+    }
+}
+                /*
 //Fucking around and finding out **
             } else {
                 Pizza chosenPizza = PizzaArray.FindPizzaById(PizzaChoice);
@@ -168,9 +172,9 @@ public class PizzaUI {
                     );
                     System.out.println("Ordren er oprettet!");
                     System.out.println(orderClass);
-     */
 
 
 
 
-}
+
+}*/
