@@ -3,6 +3,7 @@ package file;
 import model.Pizza;
 
 import model.*;
+import util.ExceptionHandler;
 
 import java.io.*;
 import java.time.LocalTime;
@@ -51,7 +52,7 @@ public class FileHandler {
             writer.close();
 
         } catch (IOException e) {
-            System.out.println("Fejl ved skrivning til fil");
+            ExceptionHandler.handleFileError(e);
         }
     }
 
@@ -96,7 +97,7 @@ public class FileHandler {
             reader.close();
 
         } catch (IOException e) {
-            System.out.println("Fejl ved læsning af fil");
+            ExceptionHandler.handleFileError(e);
         }
 
         return orders;
