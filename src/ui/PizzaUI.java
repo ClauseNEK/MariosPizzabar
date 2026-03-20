@@ -23,7 +23,7 @@ public class PizzaUI {
             System.out.println("3. Vis aktive ordrer");
             System.out.println("4. Save & Exit");
             System.out.println(" ");
-            int choice = ExceptionHandler.getIntInput(scanner, "Vælg en mulighed: ");
+            int choice = scanner.nextInt();
 
             switch (choice) {
 
