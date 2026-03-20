@@ -107,7 +107,12 @@ public class PizzaUI {
                 choosingPizza = false;
 
                     System.out.println("Aktiv Pizzaordrer:");
-                    System.out.println(pizzas);
+                    System.out.println(pizzas);//classic arraylist
+                    //one by one
+                    for (int pizzaorder : pizzas) {
+                    System.out.println(pizzaorder);
+                }
+
                     break;
 
             }
