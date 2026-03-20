@@ -105,6 +105,8 @@ public class PizzaUI {
             scanner.nextLine();
             pizzas.add(PizzaChoice);
 
+            break;
+
             if(PizzaChoice == 0) {
                 choosingPizza = false;
                 for (Integer pizza : pizzas) {
