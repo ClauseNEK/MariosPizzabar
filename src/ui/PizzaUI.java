@@ -11,45 +11,24 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PizzaUI {
+    static Scanner scanner = new Scanner(System.in);
     public static void start() {
 
-        Scanner scanner = new Scanner(System.in);
+
         boolean running = true;
 
         while (running) {
             showmenu();
             int choice = scanner.nextInt();
-
             switch (choice) {
-
                 // CASE 1 | Fremviser PizzaArrayet og printer hele pizzaarayet ud (for loop)
-
                 case 1:
                     showpizzas();
-
-
                     break;
-
-
-
 
                     // CASE 2 | CSV - FileHandler
 
-
-
                 case 2: // Erstattes med vores FileHandler og CSV fil
-                    ArrayList<Pizza> pizzas = new ArrayList<>();
-                    // Midlertidlig - INDTIL CSV
-                    PizzaOrderClass orderClass = PizzaOrder.createOrder(
-                            1,
-                            100,
-                            "Test",
-                            "+45 12 12 12 12",
-                            pizzas,
-                            LocalTime.now().plusMinutes(20)
-                    );
-                    System.out.println("Ordren er oprettet!");
-                    System.out.println(orderClass);
                     break;
 
 
@@ -88,4 +67,101 @@ public class PizzaUI {
         // Printer ny linje for hver pizza
         PizzaListe.getPizzalist();
     }
+
+
+    public static void PizzaOrderNew() {
+        Scanner scanner = new Scanner(System.in);
+
+
+
+        System.out.println("Oprettelse af ny ordre...");
+
+        System.out.println("Vælg kundetype:");
+        System.out.println("Kundetype: 1) Normal");
+        System.out.println("Kundetype: 2) VIP");
+        System.out.println("Kundetype: 3) Employee");
+        int customerType = scanner.nextInt();
+
+        System.out.println("Indtast kundeID:");
+        int customerID = scanner.nextInt();
+
+        System.out.orintln("Indtast kundens navn:");
+        String name = scanner.nextLine();
+
+        System.out.println("Indtast kundens tlf-nr:");
+        String phoneNumber = scanner.nextLine();
+
+        ArrayList<Pizza> pizzas = new ArrayList<>();
+        boolean choosingPizza = true;
+
+        while (choosingPizza) {
+            System.out.println("Menu kortet");
+            PizzaArray pizzaList = new PizzaArray();
+            pizzaList.getPizzalist();
+
+            System.out.println("Vælg et nr: 1-14 ellers tryk 0 for afslutte");
+            int PizzaChoice = scanner.nextInt();
+            scanner.nextLine();
+
+            if(PizzaChoice == 0) {
+                choosingPizza = false;
+            } else {
+                Pizza chosenPizza = PizzaArray.FindPizzaById(PizzaChoice);
+
+                if (choosingPizza != null) {
+                    pizzas.add(chosenPizza);
+                    System.out.println(chosenPizza.getName() + "Er tilføjet til ordren:");
+                } else {
+                    System.out.println("Forkert PizzaID");
+                }
+            }
+        }
+
+        System.out.println("Der er ikke blevet valgt nogen pizzaer");
+
+        LocalTime pickupTime = LocalTime.now().plusMinutes(20);
+
+        PizzaOrderClass orderClass = PizzaOrder.createOrder(
+                customerType,
+                customerID,
+                name,
+                phoneNumber,
+                pizzas,
+                pickupTime
+        );
+
+
+        ArrayList<PizzaOrderClass> OneOrder = new ArrayList<>();
+        OneOrder.add(orderClass);
+        file.FileHandler.savePizzaOrder(OneOrder);
+        System.out.println("Ordren er blevet gemt og oprettet:");
+        System.out.println(orderClass);
+    }
+
+    /*
+    ID:
+    KundeType:
+    Navn:
+    Tlf nummer:
+
+     */
+
+    /*
+                        ArrayList<Pizza> pizzas = new ArrayList<>();
+                    // Midlertidlig - INDTIL CSV
+                    PizzaOrderClass orderClass = PizzaOrder.createOrder(
+                            1,
+                            100,
+                            "Test",
+                            "+45 12 12 12 12",
+                            pizzas,
+                            LocalTime.now().plusMinutes(20)
+                    );
+                    System.out.println("Ordren er oprettet!");
+                    System.out.println(orderClass);
+     */
+
+
+
+
 }
