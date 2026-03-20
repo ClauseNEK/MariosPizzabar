@@ -59,6 +59,7 @@ public class PizzaUI {
         System.out.println("3. Vis aktive ordrer");
         System.out.println("4. Save & Exit");
         System.out.println(" ");
+
     }
 
     public static void showpizzas() {
@@ -85,13 +86,13 @@ public class PizzaUI {
         System.out.println("Indtast kundeID:");
         int customerID = scanner.nextInt();
 
-        System.out.orintln("Indtast kundens navn:");
+        System.out.println("Indtast kundens navn:");
         String name = scanner.nextLine();
 
         System.out.println("Indtast kundens tlf-nr:");
         String phoneNumber = scanner.nextLine();
-
-        ArrayList<Pizza> pizzas = new ArrayList<>();
+//Fucking around and finding out **
+        ArrayList<Integer> pizzas = new ArrayList<>();
         boolean choosingPizza = true;
 
         while (choosingPizza) {
@@ -102,9 +103,15 @@ public class PizzaUI {
             System.out.println("Vælg et nr: 1-14 ellers tryk 0 for afslutte");
             int PizzaChoice = scanner.nextInt();
             scanner.nextLine();
+            pizzas.add(PizzaChoice);
 
             if(PizzaChoice == 0) {
                 choosingPizza = false;
+                for (Integer pizza : pizzas) {
+                    System.out.println(pizza);
+                    break;
+                }
+//Fucking around and finding out **
             } else {
                 Pizza chosenPizza = PizzaArray.FindPizzaById(PizzaChoice);
 
