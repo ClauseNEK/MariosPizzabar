@@ -17,12 +17,7 @@ public class PizzaUI {
         boolean running = true;
 
         while (running) {
-            System.out.println("==== \uD83C\uDF55 Mario's PizzaBar \uD83C\uDF55 ====");
-            System.out.println("1. Vis menukortet");
-            System.out.println("2. Opret en ordre");
-            System.out.println("3. Vis aktive ordrer");
-            System.out.println("4. Save & Exit");
-            System.out.println(" ");
+            showmenu();
             int choice = scanner.nextInt();
 
             switch (choice) {
@@ -30,10 +25,9 @@ public class PizzaUI {
                 // CASE 1 | Fremviser PizzaArrayet og printer hele pizzaarayet ud (for loop)
 
                 case 1:
-                    System.out.println("Viser menu....");
-                    PizzaArray PizzaListe = new PizzaArray();
-                    // Printer ny linje for hver pizza
-                    PizzaListe.getPizzalist();
+                    showpizzas();
+
+
                     break;
 
 
@@ -77,5 +71,21 @@ public class PizzaUI {
                     System.out.println("\u001B[31mFejl i valg?\u001B[0m");
             }
         }
+    }
+
+    public static void showmenu(){
+        System.out.println("==== \uD83C\uDF55 Mario's PizzaBar \uD83C\uDF55 ====");
+        System.out.println("1. Vis menukortet");
+        System.out.println("2. Opret en ordre");
+        System.out.println("3. Vis aktive ordrer");
+        System.out.println("4. Save & Exit");
+        System.out.println(" ");
+    }
+
+    public static void showpizzas() {
+        System.out.println("Viser menu....");
+        PizzaArray PizzaListe = new PizzaArray();
+        // Printer ny linje for hver pizza
+        PizzaListe.getPizzalist();
     }
 }
