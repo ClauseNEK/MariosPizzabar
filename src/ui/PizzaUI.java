@@ -127,6 +127,7 @@ public class PizzaUI {
                         //one by one
                         for (int pizzaorder : pizzas) {
                             System.out.println("Nr. " + pizzaorder + " ");
+                            LocalTime ordertime = LocalTime.now(); // time of order
                         }
                         break;
 
@@ -142,6 +143,10 @@ public class PizzaUI {
                 ExceptionHandler.handleUnexpectedError(e);
                 scanner.nextLine();
             }
+//Need too send data to PizzaOrderClass createOrder(int customerType, int customerId, String name,
+//                                                 String phoneNumber, ArrayList<Pizza> pizzas,
+//                                                 LocalTime pickupTime)
+            // with local variables createOrder(customerType, customerID, name, phoneNumber, pizzaList, ordertime)
 
 
 
