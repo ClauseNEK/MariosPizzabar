@@ -111,25 +111,36 @@ public class PizzaUI {
             PizzaArray pizzaList = new PizzaArray();
             pizzaList.getPizzalist();
             System.out.println("Vælg et nr: 1-14 ellers tryk 0 for afslutte");
-            int PizzaChoice = scanner.nextInt();
+            try {
+                int PizzaChoice = scanner.nextInt();
 
-            switch(PizzaChoice){
-                case 1,2,3,4,5,6,7,8,9,10,11,12,13,14 : pizzas.add(PizzaChoice);
-                break;
+                switch (PizzaChoice) {
+                    case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14:
+                        pizzas.add(PizzaChoice);
+                        break;
 
-                case 0 :
-                    choosingPizza = false;
+                    case 0:
+                        choosingPizza = false;
 
-                    System.out.println("Aktiv Pizzaordrer:");
-                    System.out.println(pizzas);//classic arraylist
-                    //one by one
-                    for (int pizzaorder : pizzas) {
-                        System.out.println(pizzaorder);
-                    }
-                    break;
+                        System.out.println("Aktiv Pizzaordrer:");
+                        System.out.println(pizzas);//classic arraylist
+                        //one by one
+                        for (int pizzaorder : pizzas) {
+                            System.out.println(pizzaorder);
+                        }
+                        break;
 
-                default:
-                    System.out.println("Kun tal fra 0-14: ");
+                    default:
+                        System.out.println("Kun tal fra 0-14: ");
+                }
+            }
+            catch (InputMismatchException e){
+                ExceptionHandler.handleInputMismatch(e);
+                scanner.nextLine();
+            }
+            catch (Exception e) {
+                ExceptionHandler.handleUnexpectedError(e);
+                scanner.nextLine();
             }
 
 

@@ -8,7 +8,7 @@ public class ExceptionHandler {
 
     public static void handleInputMismatch(InputMismatchException e) {
 
-        System.out.println("Fejl: Kun tal 1-4.");
+        System.out.println("Indput fejl: Kun tal.");
 
     }
 
