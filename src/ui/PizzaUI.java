@@ -8,6 +8,7 @@ import util.ExceptionHandler;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PizzaUI {
@@ -20,35 +21,46 @@ public class PizzaUI {
 
         while (running) {
             showmenu();
-            int choice = scanner.nextInt();
-            switch (choice) {
-                // CASE 1 | Fremviser PizzaArrayet og printer hele pizzaarayet ud (for loop)
-                case 1:
-                    showpizzas();
-                    break;
+            try {
+                int choice = scanner.nextInt();
+                switch (choice) {
+                    // CASE 1 | Fremviser PizzaArrayet og printer hele pizzaarayet ud (for loop)
+                    case 1:
+                        showpizzas();
+                        break;
 
-                // CASE 2 | CSV - FileHandler
+                    // CASE 2 | CSV - FileHandler
 
-                case 2: // Erstattes med vores FileHandler og CSV fil
-                    PizzaOrderNew();
-                    break;
-
-
-                // CASE 3 | Viser aktive ordrer | Giver Mario en idé om hvor mange pizzaer han skal lave
-
-                case 3:
-                    System.out.println("Viser aktive ordrer...");
-                    break;
+                    case 2: // Erstattes med vores FileHandler og CSV fil
+                        PizzaOrderNew();
+                        break;
 
 
-                // CASE 4 | Simpel afslutning dog mangler en "Save" til vores CSV.
+                    // CASE 3 | Viser aktive ordrer | Giver Mario en idé om hvor mange pizzaer han skal lave
 
-                case 4:
-                    System.out.println("Systemet afsluttes");
-                    running = false;
-                    break;
-                default:
-                    System.out.println("\u001B[31mFejl i valg?\u001B[0m");
+                    case 3:
+                        System.out.println("Viser aktive ordrer...");
+                        break;
+
+
+                    // CASE 4 | Simpel afslutning dog mangler en "Save" til vores CSV.
+
+                    case 4:
+                        System.out.println("Systemet afsluttes");
+                        running = false;
+                        break;
+                    default:
+                        System.out.println("\u001B[31mFejl i valg?\u001B[0m");
+                }
+
+            }
+            catch (InputMismatchException e){
+                ExceptionHandler.handleInputMismatch(e);
+                scanner.nextLine();
+            }
+            catch (Exception e) {
+                ExceptionHandler.handleUnexpectedError(e);
+                scanner.nextLine();
             }
         }
     }
@@ -59,7 +71,6 @@ public class PizzaUI {
         System.out.println("2. Opret en ordre");
         System.out.println("3. Vis aktive ordrer");
         System.out.println("4. Save & Exit");
-        System.out.println(" ");
 
     }
 
