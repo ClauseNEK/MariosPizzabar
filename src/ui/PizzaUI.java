@@ -66,7 +66,7 @@ public class PizzaUI {
     }
 
     public static void showmenu() {
-        System.out.println("==== \uD83C\uDF55 Mario's PizzaBar \uD83C\uDF55 ====");
+        System.out.println("\n==== \uD83C\uDF55 Mario's PizzaBar \uD83C\uDF55 ====");
         System.out.println("1. Vis menukortet");
         System.out.println("2. Opret en ordre");
         System.out.println("3. Vis aktive ordrer");
@@ -123,10 +123,10 @@ public class PizzaUI {
                         choosingPizza = false;
 
                         System.out.println("Aktiv Pizzaordrer:");
-                        System.out.println(pizzas);//classic arraylist
+                        //System.out.println(pizzas);//classic arraylist
                         //one by one
                         for (int pizzaorder : pizzas) {
-                            System.out.println(pizzaorder);
+                            System.out.println("Nr. " + pizzaorder + " ");
                         }
                         break;
 
