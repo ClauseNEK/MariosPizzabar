@@ -93,9 +93,11 @@ public class PizzaUI {
         System.out.println("Kundetype: 2) VIP");
         System.out.println("Kundetype: 3) Employee");
         int customerType = scanner.nextInt();
+        scanner.nextLine();
 
         System.out.println("Indtast kundeID:");
         int customerID = scanner.nextInt();
+        scanner.nextLine();
 
         System.out.println("Indtast kundens navn:");
         String name = scanner.nextLine();
