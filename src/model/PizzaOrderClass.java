@@ -15,6 +15,10 @@ public class PizzaOrderClass {
         this.pickupTime = pickupTime;
 
     }
+
+    public PizzaOrderClass(int customerType, int customerID, String name, String phoneNumber, ArrayList<Integer> pizzas, LocalTime orderTime) {
+    }
+
     public int getOrderId() {
         return orderId;
     }
@@ -54,12 +58,12 @@ public class PizzaOrderClass {
     @Override
     public String toString() {
         return "OrderID: " + orderId
-                + "Kunde: " + customer.getName()
-                + "Telefon: " + customer.getPhoneNumber()
-                + "Afhentning: " + pickupTime   // Pizza's udskrives for sig
-                + "Subtotal: " + getSubtotal()
-                + "Rabat: " + getDiscountAmount()
-                + "Endelig pris: " + getTotalPrice();
+                + "\nKunde: " + customer.getName()
+                + "\nTelefon: " + customer.getPhoneNumber()
+                + "\nAfhentning: " + pickupTime   // Pizza's udskrives for sig
+                + "\nSubtotal: " + getSubtotal() + "kr"
+                + "\nRabat: " + getDiscountAmount() + "kr"
+                + "\nEndelig pris: " + getTotalPrice() + "kr";
 
     }
 }

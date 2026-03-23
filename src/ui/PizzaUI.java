@@ -1,10 +1,9 @@
 package ui;
 
-import model.Pizza;
-import model.PizzaArray;
-import model.PizzaOrderClass;
+import model.*;
 import service.PizzaOrder;
 import util.ExceptionHandler;
+import util.PizzaSorter;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -12,9 +11,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PizzaUI {
-    static Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
+    private PizzaOrderClass currentOrder;
+    private int orderId = 0;
+    private Customer customer;
+    ArrayList<Pizza> selectedPizzas;
 
-    public static void start() {
+    public void start() {
 
 
         boolean running = true;
@@ -32,14 +35,23 @@ public class PizzaUI {
                     // CASE 2 | CSV - FileHandler
 
                     case 2: // Erstattes med vores FileHandler og CSV fil
-                        PizzaOrderNew();
+                        neworder();
                         break;
 
 
                     // CASE 3 | Viser aktive ordrer | Giver Mario en idé om hvor mange pizzaer han skal lave
 
                     case 3:
-                        System.out.println("Viser aktive ordrer...");
+                        if (currentOrder != null) {
+                            System.out.println(currentOrder);
+                            System.out.println(" ");// Dette printer både kunde og pizzaer (hvis toString er lavet)
+                            PizzaSorter.sortById(selectedPizzas);
+                            for (Pizza s : selectedPizzas){
+                            System.out.println(s + " ");
+                        }
+                        } else {
+                            System.out.println("Ingen aktive ordrer...");
+                        }
                         break;
 
 
@@ -78,14 +90,17 @@ public class PizzaUI {
         System.out.println("Viser menu....");
         PizzaArray PizzaListe = new PizzaArray();
         // Printer ny linje for hver pizza
-        PizzaListe.getPizzalist();
+        PizzaListe.printMenu();
     }
 
+    public void neworder(){
 
-    public static void PizzaOrderNew() {
+        PizzaArray menu = new PizzaArray();
+        selectedPizzas = new ArrayList<>();
+
         Scanner scanner = new Scanner(System.in);
 
-
+        LocalTime orderTime = LocalTime.now(); // time of order
         System.out.println("Oprettelse af ny ordre...");
 
         System.out.println("Vælg kundetype:");
@@ -111,7 +126,72 @@ public class PizzaUI {
         while (choosingPizza) {
             System.out.println("Menu kortet");
             PizzaArray pizzaList = new PizzaArray();
-            pizzaList.getPizzalist();
+            pizzaList.printMenu();
+            System.out.println("Vælg et nr: 1-14 ellers tryk 0 for afslutte");
+            try {
+                // ... inde i dit loop hvor brugeren taster tal ...
+                int choice = scanner.nextInt();
+                if (choice > 0 && choice <= 14) {
+                    // Vi henter det RIGTIGE pizza-objekt fra menuen
+                    Pizza chosen = menu.getPizzaById(choice);
+                    if (chosen != null) {
+                        selectedPizzas.add(chosen);
+                        System.out.println("Tilføjet: " + chosen.getName());
+                    }
+                } else if (choice == 0) {
+                    choosingPizza = false;
+                }
+
+            } catch (InputMismatchException e) {
+                ExceptionHandler.handleInputMismatch(e);
+                scanner.nextLine();
+            } catch (Exception e) {
+                ExceptionHandler.handleUnexpectedError(e);
+                scanner.nextLine();
+            }
+
+        }
+        this.customer = switch (customerType) {
+            case 2 -> new VipCustomer(customerID, name, phoneNumber);
+            case 3 -> new EmployeeCustomer(customerID, name, phoneNumber);
+            default -> new NormalCustomer(customerID, name, phoneNumber);
+        };
+
+// Gem det hele i dit klasse-felt 'currentOrder'
+        this.currentOrder = new PizzaOrderClass(orderId++, customer, LocalTime.now(), selectedPizzas);
+    }
+
+
+    public void PizzaOrderNew() {
+        Scanner scanner = new Scanner(System.in);
+
+        LocalTime orderTime = LocalTime.now(); // time of order
+        System.out.println("Oprettelse af ny ordre...");
+
+        System.out.println("Vælg kundetype:");
+        System.out.println("Kundetype: 1) Normal");
+        System.out.println("Kundetype: 2) VIP");
+        System.out.println("Kundetype: 3) Employee");
+        int customerType = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Indtast kundeID:");
+        int customerID = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Indtast kundens navn:");
+        String name = scanner.nextLine();
+
+        System.out.println("Indtast kundens tlf-nr:");
+        String phoneNumber = scanner.nextLine();
+//Fucking around and finding out **
+        ArrayList<Integer> pizzas = new ArrayList<>();
+        boolean choosingPizza = true;
+
+        while (choosingPizza) {
+            System.out.println("Menu kortet");
+            PizzaArray pizzaList = new PizzaArray();
+            pizzaList.printMenu();
             System.out.println("Vælg et nr: 1-14 ellers tryk 0 for afslutte");
             try {
                 int PizzaChoice = scanner.nextInt();
@@ -129,8 +209,9 @@ public class PizzaUI {
                         //one by one
                         for (int pizzaorder : pizzas) {
                             System.out.println("Nr. " + pizzaorder + " ");
-                            LocalTime ordertime = LocalTime.now(); // time of order
+
                         }
+
                         break;
 
                     default:
@@ -172,6 +253,25 @@ public class PizzaUI {
 
 
         }
+        //currentOrder = new PizzaOrderClass(customerType, customerID, name, phoneNumber, pizzas, orderTime);
+        ArrayList<Pizza> selectedPizzas = new ArrayList<>();
+        PizzaArray menu = new PizzaArray(); // Vi henter menuen
+
+        for (int id : pizzas) {
+            // Her skal du have en metode i din PizzaArray der kan finde en pizza ud fra ID
+            Pizza p = menu.getPizzaById(id);
+            if (p != null) {
+                selectedPizzas.add(p);
+            }
+        }
+
+// Gem i den statiske variabel
+        currentOrder = new PizzaOrderClass(orderId, customer, orderTime, selectedPizzas);
+        System.out.println("Ordre oprettet succesfuldt!");
+
+        //int orderId, Customer customer, LocalTime pickupTime, ArrayList<Pizza> pizzas
+
+        //return new PizzaOrderClass(customerType, customerID, name, phoneNumber, pizzas, orderTime);
     }
 }
                 /*
