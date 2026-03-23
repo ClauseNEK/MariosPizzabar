@@ -1,11 +1,12 @@
 package model;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class PizzaOrderClass {
     private int orderId;
     private Customer customer;
-    private LocalTime pickupTime;
+    private LocalTime pickupTime, myDateObj;
     private ArrayList<Pizza> pizzas;
 
     public PizzaOrderClass(int orderId, Customer customer, LocalTime pickupTime, ArrayList<Pizza> pizzas){
@@ -32,7 +33,7 @@ public class PizzaOrderClass {
     }
 
     public LocalTime getPickupTime() {
-        return pickupTime;
+                return pickupTime;
     }
     // Beregner samlede pris før rabat.
     public double getSubtotal(){
@@ -57,11 +58,14 @@ public class PizzaOrderClass {
 
     @Override
     public String toString() {
+        myDateObj = pickupTime;
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String formattedDate = myDateObj.format(myFormatObj);
         return "OrderID: " + orderId
                 + "\nKunde: " + customer.getName()
                 + "\nTelefon: " + customer.getPhoneNumber()
-                + "\nAfhentning: " + pickupTime   // Pizza's udskrives for sig
-                + "\nSubtotal: " + getSubtotal() + "kr"
+                + "\nAfhentning: " + formattedDate   // Pizza's udskrives for sig
+                + "\nPris(før rabat): " + getSubtotal() + "kr"
                 + "\nRabat: " + getDiscountAmount() + "kr"
                 + "\nEndelig pris: " + getTotalPrice() + "kr";
 
