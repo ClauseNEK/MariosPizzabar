@@ -1,7 +1,7 @@
 package util;
 
 import model.Pizza;
-
+import model.PizzaOrderClass;
 import java.util.Comparator;
 
 public class PizzaComparator implements Comparator<Pizza> {
@@ -32,3 +32,9 @@ public class PizzaComparator implements Comparator<Pizza> {
         }
     }
 
+    class PriceOrderComparator implements Comparator<PizzaOrderClass>{
+    @Override
+    public int compare(PizzaOrderClass p1, PizzaOrderClass p2) {
+        return Double.compare(p1.getTotalPrice(), p2.getTotalPrice());
+    }
+}

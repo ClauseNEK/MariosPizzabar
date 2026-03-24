@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class FileHandler {
 
-    final static String filename = "src/file/sales.txt";
+    final static String filename = "src/file/sales.csv";
 
     public static void savePizzaOrder(ArrayList<PizzaOrderClass> orders) {
         try {
