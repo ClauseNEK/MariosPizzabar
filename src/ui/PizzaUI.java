@@ -67,7 +67,7 @@ public class PizzaUI {
         System.out.println("1. Vis menukortet");
         System.out.println("2. Opret en ordre");
         System.out.println("3. Vis aktive ordrer");
-        System.out.println("4. Hvis gamle salg");
+        System.out.println("4. vis gamle salg");
         System.out.println("5. Save & Exit");
 
     }
