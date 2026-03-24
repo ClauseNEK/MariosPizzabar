@@ -42,7 +42,7 @@ public class FileHandler {
                 }
 
                 writer.println(
-                        order.getOrderId() + "|" +
+                        getNextOrderId() + "|" +
                                 customerData + "|" +
                                 order.getPickupTime() + "|" +
                                 pizzaData
@@ -120,6 +120,30 @@ public class FileHandler {
         }
         return customer;
     }
-}
 
+    public static int getNextOrderId() {
+        int maxId = 0;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.trim().isEmpty()) continue; // Spring tomme linjer over
+
+                // Vi splitter kun ved det første skilletegn for at spare tid
+                String[] data = line.split("\\|");
+                int currentId = Integer.parseInt(data[0].trim());
+
+                if (currentId > maxId) {
+                    maxId = currentId;
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            // Hvis filen ikke findes endnu, starter vi bare ved ID 1
+            return 1;
+        }
+
+        return maxId + 1;
+    }
+
+}
 

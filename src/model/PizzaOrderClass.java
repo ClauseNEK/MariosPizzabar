@@ -33,7 +33,7 @@ public class PizzaOrderClass {
     }
 
     public LocalTime getPickupTime() {
-                return pickupTime;
+        return pickupTime;
     }
     // Beregner samlede pris før rabat.
     public double getSubtotal(){
