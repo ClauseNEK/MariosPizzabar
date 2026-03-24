@@ -65,7 +65,7 @@ public class PizzaOrderClass {
                 + "\nKunde: " + customer.getName()
                 + "\nTelefon: " + customer.getPhoneNumber()
                 + "\nAfhentning: " + formattedDate   // Pizza's udskrives for sig
-                + "\nPizza(s): " + getPizzas() + "kr"
+                + "\nPizza(s): " + getPizzas()
                 + "\nPris(før rabat): " + getSubtotal() + "kr"
                 + "\nRabat: " + getDiscountAmount() + "kr"
                 + "\nEndelig pris: " + getTotalPrice() + "kr";
