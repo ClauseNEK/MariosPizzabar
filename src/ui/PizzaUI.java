@@ -48,6 +48,9 @@ public class PizzaUI {
                     System.out.println(FileHandler.readPizzaCsv());
                     break;
 
+                    case 6:
+                        sortCSVbyPrice();
+                        break;
                     default:
                         System.out.println("Fejl i valg");
                 }
@@ -183,6 +186,13 @@ public class PizzaUI {
             }
             System.out.println("---------------------");
         }
+    }
+
+    public void sortCSVbyPrice(){
+        ArrayList<PizzaOrderClass> importArray = new ArrayList<>();
+        importArray = FileHandler.readPizzaCsv();
+        PizzaSorter.PriceOrderComparator(importArray);
+        System.out.println(importArray);
     }
 
 //    public ArrayList<Pizza> getSelectedPizzas(){
