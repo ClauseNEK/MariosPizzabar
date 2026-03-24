@@ -43,6 +43,11 @@ public class PizzaUI {
                         running = false;
                         break;
 
+                    case 5:
+                    System.out.println("Gamle ordrer fra CSV:");
+                    System.out.println(FileHandler.readPizzaCsv());
+                    break;
+
                     default:
                         System.out.println("Fejl i valg");
                 }
@@ -63,6 +68,7 @@ public class PizzaUI {
         System.out.println("2. Opret en ordre");
         System.out.println("3. Vis aktive ordrer");
         System.out.println("4. Save & Exit");
+        System.out.println("5. Hvis gamle salg");
     }
 
     public static void showpizzas() {
