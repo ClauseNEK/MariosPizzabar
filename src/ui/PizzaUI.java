@@ -67,7 +67,7 @@ public class PizzaUI {
         System.out.println("1. Vis menukortet");
         System.out.println("2. Opret en ordre");
         System.out.println("3. Vis aktive ordrer");
-        System.out.println("4. vis gamle salg");
+        System.out.println("4. Vis gamle salg");
         System.out.println("5. Save & Exit");
 
     }
@@ -155,7 +155,7 @@ public class PizzaUI {
 
         FileHandler.savePizzaOrder(oneOrder);
 
-        System.out.println("\nOrdren er oprettet og gemt i sales.txt");
+        System.out.println("\nOrdren er oprettet og gemt i sales.Csv");
         System.out.println(currentOrder);
 
         System.out.println("Valgte pizzaer:");
@@ -166,21 +166,27 @@ public class PizzaUI {
     }
 
     public void showActiveOrders() {
-        ArrayList<PizzaOrderClass> orders = FileHandler.readPizzaCsv();
-
-        if (orders.isEmpty()) {
+        //ArrayList<PizzaOrderClass> orders = FileHandler.readPizzaCsv();
+        //Stod til at printe akiveret pizzaer ikke og ikke aktive pizza ordrer.
+        //Printer næsten samme besked 2 gange?
+        if (selectedPizzas.isEmpty()) {
             System.out.println("Ingen aktive ordrer fundet.");
             return;
         }
 
         System.out.println("\nAktive ordrer:");
-        for (PizzaOrderClass order : orders) {
+        for (Pizza order : selectedPizzas) {
             System.out.println(order);
             System.out.println("Pizzaer:");
-            for (Pizza pizza : order.getPizzas()) {
+            for (Pizza pizza : selectedPizzas) {
                 System.out.println("- " + pizza.getName() + " (" + pizza.getPrice() + " kr)");
             }
             System.out.println("---------------------");
         }
     }
+
+//    public ArrayList<Pizza> getSelectedPizzas(){
+//        int pizzas = ArrayListselectedPizzas
+//        return null;
+//    }
 }

@@ -71,4 +71,6 @@ public class PizzaOrderClass {
                 + "\nEndelig pris: " + getTotalPrice() + "kr";
 
     }
+
+
 }
