@@ -7,7 +7,6 @@ import java.util.InputMismatchException;
 public class ExceptionHandler {
 
     public static void handleInputMismatch(InputMismatchException e) {
-
         System.out.println("Indput fejl: Kun tal.");
 
     }
