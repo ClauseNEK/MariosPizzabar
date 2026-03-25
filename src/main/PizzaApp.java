@@ -12,6 +12,7 @@ public class PizzaApp {
         System.out.println("Pizza Count: " + FileHandler.countPizzaSales());
         System.out.println("Best seller: " + FileHandler.findBestSeller());
 
-
+        pizzaUI.pizzaAschiiArt1();
+        pizzaUI.pizzaAschiiArt2();
     }
 }
