@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static file.FileHandler.countPizzaSales;
+
 public class PizzaUI {
     private Scanner scanner = new Scanner(System.in);
     private PizzaOrderClass currentOrder;
@@ -26,6 +28,7 @@ public class PizzaUI {
                 scanner.nextLine();
 
                 switch (choice) {
+
                     case 1:
                         showpizzas();
                         break;
@@ -51,6 +54,9 @@ public class PizzaUI {
                     case 6:
                         sortCSVbyPrice();
                         break;
+                    case 7:
+                        printPizzaSales();
+                        break;
                     default:
                         System.out.println("Fejl i valg");
                 }
@@ -72,6 +78,10 @@ public class PizzaUI {
         System.out.println("3. Vis aktive ordrer");
         System.out.println("4. Vis gamle salg");
         System.out.println("5. Save & Exit");
+        System.out.println("6. Sorter CSV efter pris");
+        System.out.println("7. Hvor mange gange pizzaer er bestilt");
+
+
 
     }
 
@@ -194,6 +204,17 @@ public class PizzaUI {
         PizzaSorter.PriceOrderComparator(importArray);
         System.out.println(importArray);
     }
+//test for print hvor ofte en pizza er bestilt.
+    public void printPizzaSales() {
+        int[] pizzaCounts = FileHandler.countPizzaSales();
+
+        for (int i = 1; i <pizzaCounts.length; i++ ){
+            System.out.println("pizza ID " + i + " er solgt " + pizzaCounts[i] + " gange");
+        }
+        }
+
+
+
 
     public void pizzaAschiiArt1(){
         System.out.print("""

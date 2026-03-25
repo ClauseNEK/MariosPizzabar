@@ -15,7 +15,8 @@ public class PizzaApp {
         //temporary test:
         System.out.println("orders: " + FileHandler.countAllOrders());
         System.out.println("Pizza sold by pizza#: " + Arrays.toString(FileHandler.countPizzaSales()));
-        System.out.println("Best seller: " + FileHandler.findBestSeller());
+
+
         //pizzaUI.pizzaAschiiArt1();
         //pizzaUI.pizzaAschiiArt2();
     }
