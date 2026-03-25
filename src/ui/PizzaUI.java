@@ -96,6 +96,7 @@ public class PizzaUI {
         System.out.println("7. Hvor mange gange pizzaer er bestilt");
         System.out.println("8. Pizza Art");
         System.out.println("9. Hvor mange gange pizzaer er bestilt(shortversion)");
+        System.out.println("10. Hvor mange gange pizzaer er bestilt(Tweaked)");
 
     }
 
