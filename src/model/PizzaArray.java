@@ -46,4 +46,14 @@ import java.util.ArrayList;
                 }
                 return null; // Hvis kunden taster nr. 99, som ikke findes
             }
+
+            public String getPizzaNameById(int id) {
+            for (Pizza p : menu) {
+                if (p.getId() == id) { // Bruger din getId fra Pizza-klassen
+                return p.getName();
+            }
+            }
+            return null; // Hvis kunden taster nr. 99, som ikke findes
+    }
+
         }

@@ -62,6 +62,10 @@ public class PizzaUI {
                         pizzaAschiiArt1();
                         pizzaAschiiArt2();
                         break;
+                    case 9:
+                        printPizzaSalesByName();
+                        break;
+
 
                     default:
                         System.out.println("Fejl i valg");
@@ -87,7 +91,7 @@ public class PizzaUI {
         System.out.println("6. Sorter CSV efter pris");
         System.out.println("7. Hvor mange gange pizzaer er bestilt");
         System.out.println("8. Pizza Art");
-
+        System.out.println("9. Hvor mange gange pizzaer er bestilt(shortversion)");
 
     }
 
@@ -218,6 +222,15 @@ public class PizzaUI {
             System.out.println(pizzaArray.getPizzaById(i) + "\u001B[32m" + " Salg: " + pizzaCounts[i] + "\u001B[0m");
         }
         }
+
+    public void printPizzaSalesByName() {
+        int[] pizzaCounts = FileHandler.countPizzaSales();
+
+        for (int i = 1; i <pizzaCounts.length; i++ ){
+            System.out.println(pizzaArray.getPizzaNameById(i) + "\u001B[32m" + " Salg: " + pizzaCounts[i] + "\u001B[0m");
+        }
+    }
+
 
 
 
