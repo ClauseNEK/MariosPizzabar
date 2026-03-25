@@ -8,6 +8,7 @@ import util.PizzaSorter;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -64,6 +65,9 @@ public class PizzaUI {
                         break;
                     case 9:
                         printPizzaSalesByName();
+                        break;
+                    case 10:
+                        printPizzaSalesSort();
                         break;
 
 
@@ -228,6 +232,14 @@ public class PizzaUI {
 
         for (int i = 1; i <pizzaCounts.length; i++ ){
             System.out.println(i + ". " + pizzaArray.getPizzaNameById(i) + "\u001B[32m" + " Salg: " + pizzaCounts[i] + "\u001B[0m");
+        }
+    }
+
+    public void printPizzaSalesSort() {
+        int[] pizzaCounts = FileHandler.countPizzaSales();
+        System.out.println("Nummer \t\t Salg:");
+        for (int i = 1; i <pizzaCounts.length; i++ ){
+            System.out.printf("%d %10s \t \u001B[32m %d\n\u001B[0m",i,pizzaArray.getPizzaNameById(i),pizzaCounts[i]);
         }
     }
 
