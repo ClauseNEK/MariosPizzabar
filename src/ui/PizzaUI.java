@@ -17,6 +17,7 @@ public class PizzaUI {
     private Scanner scanner = new Scanner(System.in);
     private PizzaOrderClass currentOrder;
     private ArrayList<Pizza> selectedPizzas;
+    private PizzaArray pizzaArray = new PizzaArray();
 
     public void start() {
         boolean running = true;
@@ -57,6 +58,11 @@ public class PizzaUI {
                     case 7:
                         printPizzaSales();
                         break;
+                    case 8:
+                        pizzaAschiiArt1();
+                        pizzaAschiiArt2();
+                        break;
+
                     default:
                         System.out.println("Fejl i valg");
                 }
@@ -80,7 +86,7 @@ public class PizzaUI {
         System.out.println("5. Save & Exit");
         System.out.println("6. Sorter CSV efter pris");
         System.out.println("7. Hvor mange gange pizzaer er bestilt");
-
+        System.out.println("8. Pizza Art");
 
 
     }
@@ -209,7 +215,7 @@ public class PizzaUI {
         int[] pizzaCounts = FileHandler.countPizzaSales();
 
         for (int i = 1; i <pizzaCounts.length; i++ ){
-            System.out.println("pizza ID " + i + " er solgt " + pizzaCounts[i] + " gange");
+            System.out.println(pizzaArray.getPizzaById(i) + "\u001B[32m" + " Salg: " + pizzaCounts[i] + "\u001B[0m");
         }
         }
 
