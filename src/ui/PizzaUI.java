@@ -227,7 +227,7 @@ public class PizzaUI {
         int[] pizzaCounts = FileHandler.countPizzaSales();
 
         for (int i = 1; i <pizzaCounts.length; i++ ){
-            System.out.println("Nr" + i + " " + pizzaArray.getPizzaNameById(i) + "\u001B[32m" + " Salg: " + pizzaCounts[i] + "\u001B[0m");
+            System.out.println(i + ". " + pizzaArray.getPizzaNameById(i) + "\u001B[32m" + " Salg: " + pizzaCounts[i] + "\u001B[0m");
         }
     }
 
