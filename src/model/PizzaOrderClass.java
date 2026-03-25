@@ -9,6 +9,7 @@ public class PizzaOrderClass {
     private LocalTime pickupTime, myDateObj;
     private ArrayList<Pizza> pizzas;
 
+    // konstuktør: opretter ny pizza ordre med alle oplysninger
     public PizzaOrderClass(int orderId, Customer customer, LocalTime pickupTime, ArrayList<Pizza> pizzas){
         this.orderId = orderId;
         this.customer = customer;
@@ -56,6 +57,7 @@ public class PizzaOrderClass {
         return getSubtotal() - getDiscountAmount();
     }
 
+    // returner enn tektsbeskrivelse af ordren
     @Override
     public String toString() {
         myDateObj = pickupTime;
