@@ -151,40 +151,30 @@ public class FileHandler {
         return orders.size();
     }
     // metode til at tælle hvor mange gange en pizza er bestilt.
-    public static Map<String, Integer> countPizzaSales() {
+    public static int[] countPizzaSales() {
         ArrayList<PizzaOrderClass> orders = readPizzaCsv();
-        Map<String, Integer> pizzaCount = new HashMap<>();
-        //for loop deg går igennem alle vores orders.
+        int[] pizzaCounts = new int[15];
         for (PizzaOrderClass order : orders){
-            //denne loop går igennem alle vores pizza, inde i en order.
             for (Pizza pizza : order.getPizzas()){
-                //get pizza navn
-                String pizzaName = pizza.getName();
-                //tæller pizza. Om en pizza er i loopen får den pizza +1
-                pizzaCount.put(pizzaName, pizzaCount.getOrDefault(pizzaName,0) + 1);
+                int id = pizza.getId();
+                pizzaCounts[id]++;
 
             }
 
         }
-        return pizzaCount;
+        return pizzaCounts;
     }
     //denne metode finder den mest solte pizza.
-    public static String findBestSeller(){
-        //caller på countPizzaSales for at få solgte pizza count.
-        Map<String, Integer> pizzaCount = countPizzaSales();
-        //variable til navnet på pizza, som starter på null.
-        String bestSeller = null;
-        //den mest soglte pizza.
-        int highestCount = 0;
-        //looper gennem hver pizzanavn plus pizza count
-        for (Map.Entry<String, Integer> entry : pizzaCount.entrySet()){
-            //if, for nuværende pizza om den er højere end highestCount. Om den er updaderer
-            if (entry.getValue() > highestCount){
-                highestCount = entry.getValue();
-                bestSeller = entry.getKey();
+    public static int findBestSeller(){
+        int[] pizzaCounts = countPizzaSales();
+        int bestPizzaId = 1;
+
+        for (int i = 2; i < pizzaCounts.length; i++){
+            if (pizzaCounts[i] > pizzaCounts[bestPizzaId]){
+                bestPizzaId = i;
             }
         }
-        return bestSeller;
+        return bestPizzaId;
     }
 
 }
