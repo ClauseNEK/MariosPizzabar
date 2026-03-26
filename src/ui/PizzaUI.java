@@ -198,21 +198,15 @@ public class PizzaUI {
         System.out.println("\nAktive ordrer:");
         try {
             if (selectedPizzas != null){
-            for (Pizza order : selectedPizzas) {
-                System.out.println(order);
-                System.out.println("Pizzaer:");
                 for (Pizza pizza : selectedPizzas) {
                     System.out.println("- " + pizza.getName() + " (" + pizza.getPrice() + " kr)");
                 }
                 System.out.println("---------------------");
-            }
-            }
+            } else System.out.println("Ingen aktive ordrer");
         } catch (NullPointerException e) {
             ExceptionHandler.handleNullError(e);
             scanner.nextLine();
         }
-                     System.out.println("Ingen aktive ordrer");
-
     }
 
     public void sortCSVbyPrice(){
