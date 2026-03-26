@@ -63,14 +63,14 @@ public class PizzaOrderClass {
         myDateObj = pickupTime;
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm:ss");
         String formattedDate = myDateObj.format(myFormatObj);
-        return "OrderID: " + orderId
+        return  ( (char)27 + "[4m\nOrderID: " + orderId + "\u001B[0m"
                 + "\nKunde: " + customer.getName()
                 + "\nTelefon: " + customer.getPhoneNumber()
                 + "\nAfhentning: " + formattedDate   // Pizza's udskrives for sig
                 + "\nPizza(s): " + getPizzas()
                 + "\nPris(før rabat): " + getSubtotal() + "kr"
                 + "\nRabat: " + getDiscountAmount() + "kr"
-                + "\nEndelig pris: " + getTotalPrice() + "kr";
+                + "\nEndelig pris: " + (char)27 + "[4m" + getTotalPrice() + "kr\u001B[0m" );
 
     }
 
