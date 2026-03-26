@@ -12,11 +12,6 @@ public class PizzaApp {
         PizzaArray pizzaArray = new PizzaArray();
         pizzaUI.start();
 
-        //temporary test:
-        System.out.println("orders: " + FileHandler.countAllOrders());
-        System.out.println("Pizza sold by pizza#: " + Arrays.toString(FileHandler.countPizzaSales()));
-
-
     }
 }
 
