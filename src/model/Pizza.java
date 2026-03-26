@@ -11,7 +11,6 @@ public class Pizza {
         this.description = description;
         this.price = price;
     }
-    //Vesuvius(1,"tomatsauce, ost, skinke og oregano", 57)
 
     @Override
     public String toString() {
