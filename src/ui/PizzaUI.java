@@ -304,8 +304,4 @@ public class PizzaUI {
                 """);
     }
 
-//    public ArrayList<Pizza> getSelectedPizzas(){
-//        int pizzas = ArrayListselectedPizzas
-//        return null;
-//    }
 }
