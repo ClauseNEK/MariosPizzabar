@@ -7,17 +7,19 @@ MariosPizza
 │   └── PizzaUI.java
 │
 ├── model
+│   ├── PizzaArray.java
+│   ├── Pizza.java
 │   ├── Customer.java
 │   ├── Normal.java
-│   ├── Vip.java
-│   ├── Employee.java
-│   ├── PizzaEnum.java
-│   └── SizeEnum.java
+│   ├── PizzaOrderClass
+│   ├── VipCustomer.java
+│   └── Employee.java
 │
 ├── service
 │   └── PizzaOrder.java
 │
 ├── file
+│   ├── sales.csv
 │   └── FileHandler.java
 │
 └── util
