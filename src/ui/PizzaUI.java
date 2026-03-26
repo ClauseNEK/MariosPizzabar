@@ -195,8 +195,9 @@ public class PizzaUI {
         System.out.println("\nAktive ordrer:");
         try {
             if (selectedPizzas != null){
+                System.out.println("---------------------");
                 for (Pizza pizza : selectedPizzas) {
-                    System.out.println("- " + pizza.getName() + " (" + pizza.getPrice() + " kr)");
+                    System.out.println(pizza.getId() + ". " + pizza.getName() + " (" + pizza.getPrice() + " kr)");
                 }
                 System.out.println("---------------------");
             } else System.out.println("Ingen aktive ordrer");
