@@ -75,6 +75,7 @@ public class PizzaUI {
                         System.out.println("Fejl i valg");
                 }
 
+
             } catch (InputMismatchException e) {
                 ExceptionHandler.handleInputMismatch(e);
                 scanner.nextLine();
@@ -197,20 +198,32 @@ public class PizzaUI {
         //ArrayList<PizzaOrderClass> orders = FileHandler.readPizzaCsv();
         //Stod til at printe akiveret pizzaer ikke og ikke aktive pizza ordrer.
         //Printer næsten samme besked 2 gange?
-        if (selectedPizzas.isEmpty()) {
-            System.out.println("Ingen aktive ordrer fundet.");
-            return;
-        }
-
+//        if (selectedPizzas.isEmpty()) {
+//            System.out.println("Ingen aktive ordrer fundet.");
+//            return;
+//        }
         System.out.println("\nAktive ordrer:");
-        for (Pizza order : selectedPizzas) {
-            System.out.println(order);
-            System.out.println("Pizzaer:");
-            for (Pizza pizza : selectedPizzas) {
-                System.out.println("- " + pizza.getName() + " (" + pizza.getPrice() + " kr)");
+        try {
+            if (selectedPizzas != null){
+            for (Pizza order : selectedPizzas) {
+                System.out.println(order);
+                System.out.println("Pizzaer:");
+                for (Pizza pizza : selectedPizzas) {
+                    System.out.println("- " + pizza.getName() + " (" + pizza.getPrice() + " kr)");
+                }
+                System.out.println("---------------------");
+
             }
-            System.out.println("---------------------");
+
+            }
+
+
+        } catch (NullPointerException e) {
+            ExceptionHandler.handleNullError(e);
+            scanner.nextLine();
         }
+                     System.out.println("Ingen aktive ordrer");
+
     }
 
     public void sortCSVbyPrice(){
