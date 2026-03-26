@@ -40,32 +40,23 @@ public class PizzaUI {
                         showActiveOrders();
                         break;
 
-                    case 5:
-                        System.out.println("Systemet afsluttes");
+                    case 4:
+                        System.out.println("Gamle ordrer fra CSV:");
+                        System.out.println(FileHandler.readPizzaCsv());
+                        break;
+
+                        case 5:
+                        sortCSVbyPrice();
+                        break;
+
+                    case 6:
+                        printPizzaSalesSort();
+                        break;
+
+                        case 0:
                         running = false;
                         break;
 
-                    case 4:
-                    System.out.println("Gamle ordrer fra CSV:");
-                    System.out.println(FileHandler.readPizzaCsv());
-                    break;
-
-                    case 6:
-                        sortCSVbyPrice();
-                        break;
-                    case 7:
-                        printPizzaSales();
-                        break;
-                    case 8:
-                        pizzaAschiiArt1();
-                        pizzaAschiiArt2();
-                        break;
-                    case 9:
-                        printPizzaSalesByName();
-                        break;
-                    case 10:
-                        printPizzaSalesSort();
-                        break;
 
 
                     default:
@@ -89,12 +80,10 @@ public class PizzaUI {
         System.out.println("2. Opret en ordre");
         System.out.println("3. Vis aktive ordrer");
         System.out.println("4. Vis gamle salg");
-        System.out.println("5. Save & Exit");
-        System.out.println("6. Sorter CSV efter pris");
-        System.out.println("7. Hvor mange gange pizzaer er bestilt");
-        System.out.println("8. Pizza Art");
-        System.out.println("9. Hvor mange gange pizzaer er bestilt(shortversion)");
-        System.out.println("10. Hvor mange gange pizzaer er bestilt(Tweaked)");
+        System.out.println("5. Sorter gamle salg (mindst -> størst))");
+        System.out.println("6. Hvor mange af hver pizza er solgt");
+        System.out.println("0. Save & Exit");
+        System.out.println("Tryk for valg:");
 
     }
 
