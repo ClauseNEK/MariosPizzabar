@@ -14,7 +14,7 @@ public class Pizza {
 
     @Override
     public String toString() {
-        return id + ". " + name + " description: " + description + " Pris: " + price + "kr";
+        return id + ". " + name + " description: " + description + " Pris: \u001B[32m" + price + "kr\u001B[0m";
     }
 
     public String getName(){

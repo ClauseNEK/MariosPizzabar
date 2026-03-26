@@ -11,7 +11,8 @@ public class PizzaApp {
         PizzaUI pizzaUI = new PizzaUI();
         PizzaArray pizzaArray = new PizzaArray();
         pizzaUI.start();
-
+        pizzaUI.pizzaAschiiArt1();
+        pizzaUI.pizzaAschiiArt2();
     }
 }
 
