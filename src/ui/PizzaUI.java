@@ -195,13 +195,6 @@ public class PizzaUI {
     }
 
     public void showActiveOrders() {
-        //ArrayList<PizzaOrderClass> orders = FileHandler.readPizzaCsv();
-        //Stod til at printe akiveret pizzaer ikke og ikke aktive pizza ordrer.
-        //Printer næsten samme besked 2 gange?
-//        if (selectedPizzas.isEmpty()) {
-//            System.out.println("Ingen aktive ordrer fundet.");
-//            return;
-//        }
         System.out.println("\nAktive ordrer:");
         try {
             if (selectedPizzas != null){
@@ -212,12 +205,8 @@ public class PizzaUI {
                     System.out.println("- " + pizza.getName() + " (" + pizza.getPrice() + " kr)");
                 }
                 System.out.println("---------------------");
-
             }
-
             }
-
-
         } catch (NullPointerException e) {
             ExceptionHandler.handleNullError(e);
             scanner.nextLine();
