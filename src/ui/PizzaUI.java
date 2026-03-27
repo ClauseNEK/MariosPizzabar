@@ -46,7 +46,7 @@ public class PizzaUI {
                         break;
 
                         case 5:
-                        sortCSVbyPrice();
+                        sortCSVbyPrice2();
                         break;
 
                     case 6:
@@ -83,7 +83,8 @@ public class PizzaUI {
         System.out.println("5. Sorter gamle salg (mindst -> størst))");
         System.out.println("6. Hvor mange af hver pizza er solgt");
         System.out.println("0. Save & Exit");
-        System.out.println("Tryk for valg:");
+        System.out.println("");
+        System.out.print("Tryk for valg:");
 
     }
 
@@ -197,11 +198,19 @@ public class PizzaUI {
     }
 
     public void sortCSVbyPrice(){
-        ArrayList<PizzaOrderClass> importArray = new ArrayList<>();
+        ArrayList<PizzaOrderClass> importArray;
         importArray = FileHandler.readPizzaCsv();
         PizzaSorter.PriceOrderComparator(importArray);
         System.out.println(importArray);
     }
+
+    public void sortCSVbyPrice2(){
+        ArrayList<PizzaOrderClass> importArray;
+        importArray = FileHandler.readPizzaCsv();
+        PizzaSorter.sortByPrice2(importArray);
+        System.out.println(importArray);
+    }
+
 //test for print hvor ofte en pizza er bestilt.
     public void printPizzaSales() {
         int[] pizzaCounts = FileHandler.countPizzaSales();

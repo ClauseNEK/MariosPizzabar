@@ -29,4 +29,8 @@ public class PizzaSorter {
     public static void PriceOrderComparator(ArrayList<PizzaOrderClass> order){
         Collections.sort(order, Comparator.comparingDouble(PizzaOrderClass::getTotalPrice));
     }
+
+    public static void sortByPrice2(ArrayList<PizzaOrderClass> pizza){
+        pizza.sort(new PriceOrderComparator());
+    }
 }
