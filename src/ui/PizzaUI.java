@@ -80,10 +80,10 @@ public class PizzaUI {
         System.out.println("2. Opret en ordre");
         System.out.println("3. Vis aktive ordrer");
         System.out.println("4. Vis gamle salg");
-        System.out.println("5. Sorter gamle salg (mindst -> størst))");
-        System.out.println("6. Hvor mange af hver pizza er solgt");
+        System.out.println("5. Sorter gamle salg (mindst -> størst)");
+        System.out.println("6. Total antal solgte pizzaer");
         System.out.println("0. Save & Exit");
-        System.out.println("");
+        System.out.println();
         System.out.print("Tryk for valg:");
 
     }
@@ -187,7 +187,9 @@ public class PizzaUI {
             if (selectedPizzas != null){
                 System.out.println("---------------------");
                 for (Pizza pizza : selectedPizzas) {
-                    System.out.println(pizza.getId() + ". " + pizza.getName() + " (" + pizza.getPrice() + " kr)");
+                    System.out.println(pizza.getId() + ". "
+                            + pizza.getName()
+                            + " (" + pizza.getPrice() + " kr)");
                 }
                 System.out.println("---------------------");
             } else System.out.println("Ingen aktive ordrer");
@@ -205,8 +207,7 @@ public class PizzaUI {
     }
 
     public void sortCSVbyPrice2(){
-        ArrayList<PizzaOrderClass> importArray;
-        importArray = FileHandler.readPizzaCsv();
+        ArrayList<PizzaOrderClass> importArray = FileHandler.readPizzaCsv();
         PizzaSorter.sortByPrice2(importArray);
         System.out.println(importArray);
     }
@@ -232,7 +233,8 @@ public class PizzaUI {
         int[] pizzaCounts = FileHandler.countPizzaSales();
         System.out.println("Nummer Pizza Salg");
         for (int i = 1; i <pizzaCounts.length; i++ ){
-            System.out.printf("%02d %-10s \t \u001B[32m %d\n\u001B[0m",i,pizzaArray.getPizzaNameById(i),pizzaCounts[i]);
+            System.out.printf("%02d %-10s \t \u001B[32m %d\n\u001B[0m",
+                    i,pizzaArray.getPizzaNameById(i),pizzaCounts[i]);
         }
     }
 
