@@ -231,7 +231,7 @@ public class PizzaUI {
 
     public void printPizzaSalesSort() {
         int[] pizzaCounts = FileHandler.countPizzaSales();
-        System.out.println("Nummer Pizza Salg");
+        System.out.print("#  Pizza       Salg\n");
         for (int i = 1; i <pizzaCounts.length; i++ ){
             System.out.printf("%02d %-10s \t \u001B[32m %d\n\u001B[0m",
                     i,pizzaArray.getPizzaNameById(i),pizzaCounts[i]);
